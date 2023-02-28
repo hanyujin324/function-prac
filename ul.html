@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // 직접 씀. 객체를 만들어주는 함수
+    function dataFunc(a,b,c,d){
+      let obj={
+        parentData:document.querySelector(a),
+        childrenData:document.createElement(b),
+        grandChildren:document.createElement(c),
+        grandChildrenText:d
+      }
+      return obj;
+    }
+    let tagArray=["div","footer","section"];
+    // dataForm: 함수로 보이지만 결과가 객체(return obj;)이므로 객체다
+    let dataForm=dataFunc("#root",tagArray[1],"p","hello");
+
+
+    // 간접으로 씀. 실체가 없다. 실행만 된다
+    let root=dataForm.parentData;
+    console.dir(root);
+
+    let aa = dataForm.childrenData;
+    root.appendChild(aa);
+
+    let bb=dataForm.grandChildren;
+    aa.appendChild(bb);
+    
+    bb.textContent=dataForm.grandChildrenText;
+  </script>
+</body>
+</html>
